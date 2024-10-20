@@ -18,7 +18,7 @@ const Semester4 = () => {
     useEffect(() => {
         const fetchFolders = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/folders/show/${semesterNumber}`);
+                const response = await axios.get(`${config.BASE_API_URL}/api/folders/show/${semesterNumber}`);
                 setFolders(response.data);
             } catch (error) {
                 console.error('There was an error fetching the folders!', error);
@@ -40,7 +40,7 @@ const Semester4 = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this folder?");
         if (confirmDelete) {
             try {
-                await axios.delete(`http://localhost:5000/api/folders/deletefolder/${folderId}`); // Delete request to backend
+                await axios.delete(`${config.BASE_API_URL}/api/folders/deletefolder/${folderId}`); // Delete request to backend
                 setFolders(folders.filter(folder => folder._id !== folderId)); // Remove deleted folder from state
             } catch (error) {
                 console.error('There was an error deleting the folder!', error);
@@ -92,7 +92,7 @@ return (
                         src={plusIcon} 
                         alt="Add Folder" 
                         className={styles.cardImage} 
-                        style={{marginTop: '20px', width: '130px', height: '130px', objectFit: 'cover' }} 
+                        style={{marginTop: '20px', width: '80px', height: '80px', objectFit: 'cover' }} 
                     />
                     <h3 style={{paddingTop: 10}}>Create Folder</h3>
                 </div>
@@ -108,7 +108,7 @@ return (
                             src={folderIcon} 
                             alt="Folder" 
                             className={styles.cardImage} 
-                            style={{ marginTop: '20px', width: '150px', height: '130px', objectFit: 'cover' }} 
+                            style={{ marginTop: '20px', width: '90px', height: '90px', objectFit: 'cover' }} 
                         />
                         <h2>{folder.name}</h2>
                         </div>

@@ -92,7 +92,7 @@ return (
                         src={plusIcon} 
                         alt="Add Folder" 
                         className={styles.cardImage} 
-                        style={{marginTop: '20px', width: '130px', height: '130px', objectFit: 'cover' }} 
+                        style={{marginTop: '20px', width: '80px', height: '80px', objectFit: 'cover' }} 
                     />
                     <h3 style={{paddingTop: 10}}>Create Folder</h3>
                 </div>
@@ -108,7 +108,7 @@ return (
                             src={folderIcon} 
                             alt="Folder" 
                             className={styles.cardImage} 
-                            style={{ marginTop: '20px', width: '150px', height: '130px', objectFit: 'cover' }} 
+                            style={{ marginTop: '20px', width: '90px', height: '90px', objectFit: 'cover' }} 
                         />
                         <h2>{folder.name}</h2>
                         </div>
