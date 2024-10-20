@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from '../css/loginsignup.module.css';
+import config from './config';
 
 const StudentLoginPage = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +25,7 @@ const StudentLoginPage = () => {
     e.preventDefault();
     if (!emailError) {
       try {
-        const response = await fetch('http://localhost:5000/api/student/login', {
+        const response = await fetch(`${config.BASE_API_URL}/api/student/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; 
+import config from './config';
 
 
 const AdminDashboard = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/admin/circulars')
+        axios.get(`${config.BASE_API_URL}/api/admin/circulars`)
             .then(response => {
                 setCards(response.data);
             })
@@ -22,7 +23,7 @@ const AdminDashboard = () => {
 
     const handleDelete = (cardId) => {
         if (window.confirm('Are you sure you want to delete this circular?')) {
-            axios.delete(`http://localhost:5000/api/admin/circularsdelete/${cardId}`)
+            axios.delete(`${config.BASE_API_URL}/api/admin/circularsdelete/${cardId}`)
                 .then(() => {
                     // Remove the deleted card from the state
                     setCards(cards.filter(card => card._id !== cardId));
@@ -44,10 +45,10 @@ const AdminDashboard = () => {
                     cards.map(card => (
                         <div className={styles.card} key={card._id}>
                             <img 
-                                src={`http://localhost:5000/${card.image}`} 
+                                src={`${config.BASE_API_URL}/${card.image}`} 
                                 alt={card.title} 
                                 className={styles.cardImage} 
-                                onClick={() => openImageInNewTab(`http://localhost:5000/${card.image}`)} 
+                                onClick={() => openImageInNewTab(`${config.BASE_API_URL}/${card.image}`)} 
                                 style={{ cursor: 'pointer' }} 
                             />
                             <h2>{card.title}</h2>

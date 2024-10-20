@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -160,8 +160,8 @@ cron.schedule('00 10 * * *', async () => {
 
 
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server started on http://localhost:${PORT}`);
 });
 
   

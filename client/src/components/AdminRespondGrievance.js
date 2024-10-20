@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
+import config from './config';
 
 const RespondGrievances = () => {
     const [grievances, setGrievances] = useState([]);
 
     useEffect(() => {
         // Fetch all grievances when component mounts
-        axios.get('http://localhost:5000/api/admin/viewallgrievances', {
+        axios.get(`${config.BASE_API_URL}/api/admin/viewallgrievances`, {
             withCredentials: true
         })
         .then(response => {
@@ -27,7 +28,7 @@ const RespondGrievances = () => {
     const handleRespondClick = (id) => {
         const grievance = grievances.find(g => g._id === id);
         if (grievance && grievance.response) {
-            axios.post(`http://localhost:5000/api/admin/respondgrievance`, {
+            axios.post(`${config.BASE_API_URL}/api/admin/respondgrievance`, {
                 grievanceId: id,
                 response: grievance.response
             }, {

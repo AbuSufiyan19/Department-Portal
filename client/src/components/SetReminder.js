@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
+import config from './config';
 
 const SetReminder = () => {
     const [title, setTitle] = useState('');
@@ -85,7 +86,7 @@ const SetReminder = () => {
             year,   
         };
 
-        axios.post('http://localhost:5000/api/admin/set-reminder', reminderData, {
+        axios.post(`${config.BASE_API_URL}/api/admin/set-reminder`, reminderData, {
             headers: {
                 'Content-Type': 'application/json',
             },

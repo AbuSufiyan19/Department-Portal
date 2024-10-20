@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/loginsignup.module.css'; // Adjust path as needed
+import config from './config';
 
 const AdminSignupPage = () => {
   const [name, setName] = useState('');
@@ -60,7 +61,7 @@ const AdminSignupPage = () => {
     e.preventDefault();
     if (!nameError && !emailError && !passwordError && !confirmPasswordError) {
       try {
-        const response = await fetch('http://localhost:5000/api/admin/signup', {
+        const response = await fetch(`${config.BASE_API_URL}/api/admin/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

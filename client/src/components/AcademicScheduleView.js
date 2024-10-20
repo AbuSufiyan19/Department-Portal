@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
 import pdf from '../Assets/Images/pdf.png';
+import config from './config';
 
 const AcademicScheduleView = () => {
     const [schedules, setSchedules] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/admin/view-academicschedule')
+        axios.get(`${config.BASE_API_URL}/api/admin/view-academicschedule`)
             .then(response => {
                 setSchedules(response.data);
             })
@@ -19,7 +20,7 @@ const AcademicScheduleView = () => {
     // Function to delete a specific schedule
     const handleDelete = (scheduleId) => {
         if (window.confirm('Are you sure you want to delete this schedule?')) { // Confirmation dialog
-            axios.delete(`http://localhost:5000/api/admin/delete-academicschedule/${scheduleId}`)
+            axios.delete(`${config.BASE_API_URL}/api/admin/delete-academicschedule/${scheduleId}`)
                 .then(response => {
                     // Remove the deleted schedule from the state
                     setSchedules(schedules.filter(schedule => schedule._id !== scheduleId));
@@ -51,14 +52,14 @@ const AcademicScheduleView = () => {
                                 <p className={styles.Classgroup}>Class {schedule.group}</p>
                                 <p>{schedule.semester} ({schedule.year.toString().slice(-2)}MX)</p>
                                 <img 
-                                    onClick={() => openPdfInNewTab(`http://localhost:5000/academic_schedules/${schedule.pdfFileName}`)} 
+                                    onClick={() => openPdfInNewTab(`${config.BASE_API_URL}/academic_schedules/${schedule.pdfFileName}`)} 
                                     style={{ height: 130, width: 130}} 
                                     src={pdf} 
                                     alt="PDF"
                                 />
                                 <br />
                                 <a 
-                                    href={`http://localhost:5000/academic_schedules/${schedule.pdfFileName}`} 
+                                    href={`${config.BASE_API_URL}/academic_schedules/${schedule.pdfFileName}`} 
                                     download={schedule.pdfFileName} 
                                     style={{ color: 'blue', cursor: 'pointer', padding: '10px', textAlign: 'center', textDecoration: 'none' }}
                                 >

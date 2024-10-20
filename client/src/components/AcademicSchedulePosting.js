@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from '../css/index.module.css'; // Import the CSS module
+import styles from '../css/index.module.css'; 
+import config from './config';
 
 const AcademicSchedulePosting = () => {
     const [group, setGroup] = useState('');
@@ -66,7 +67,7 @@ const AcademicSchedulePosting = () => {
         formData.append('pdf', pdf);
         formData.append('year', year); // Append the year to the form data
 
-        axios.post('http://localhost:5000/api/admin/upload-academicschedule', formData, {
+        axios.post(`${config.BASE_API_URL}/api/admin/upload-academicschedule`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

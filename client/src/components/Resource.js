@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from '../css/index.module.css'; 
 import pdfIcon from '../Assets/Images/pdf.png'; // Icon for PDFs
 import plusIcon from '../Assets/Images/plus.png'; // Plus icon for adding PDFs
+import config from './config';
 
 const Resource = ({ folder }) => { // Accept folder prop
     const [resources, setResources] = useState([]); // State to store resources
@@ -15,7 +16,7 @@ const Resource = ({ folder }) => { // Accept folder prop
     useEffect(() => {
         const fetchResources = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/resources/${folder._id}`); // Fetch resources based on folder ID
+                const response = await axios.get(`${config.BASE_API_URL}/api/resources/${folder._id}`); // Fetch resources based on folder ID
                 setResources(response.data);
             } catch (error) {
                 console.error('There was an error fetching the resources!', error);
@@ -41,7 +42,7 @@ const Resource = ({ folder }) => { // Accept folder prop
         
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:5000/api/resources/deleteresource/${resourceId}`); // Send DELETE request to backend
+                await axios.delete(`${config.BASE_API_URL}/api/resources/deleteresource/${resourceId}`); // Send DELETE request to backend
                 setResources(resources.filter(resource => resource._id !== resourceId)); // Update state to remove deleted resource
             } catch (error) {
                 console.error('There was an error deleting the resource!', error);
@@ -72,7 +73,7 @@ const Resource = ({ folder }) => { // Accept folder prop
         formData.append('semesterNumber', folder.semester); // Append semester number
 
         try {
-            const response = await axios.post('http://localhost:5000/api/resources/upload', formData, {
+            const response = await axios.post(`${config.BASE_API_URL}/api/resources/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Set content type for file upload
                 }
@@ -108,7 +109,7 @@ const Resource = ({ folder }) => { // Accept folder prop
                         key={resource._id} 
                         style={{ cursor: 'pointer' }} // Change cursor to pointer to indicate clickable
                     >
-                        <div onClick={() => openImageInNewTab(`http://localhost:5000/${resource.url}`)}>
+                        <div onClick={() => openImageInNewTab(`${config.BASE_API_URL}/${resource.url}`)}>
                             <img 
                                 src={pdfIcon} 
                                 alt="PDF" 

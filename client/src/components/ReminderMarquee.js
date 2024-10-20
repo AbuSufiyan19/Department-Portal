@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css';
+import config from './config';
 
 const RemindersMarquee = () => {
     const [reminders, setReminders] = useState([]);
 
     useEffect(() => {
         // Fetch reminders from the backend
-        axios.get('http://localhost:5000/api/admin/remindersmarquee')
+        axios.get(`${config.BASE_API_URL}/api/admin/remindersmarquee`)
             .then(response => {
                 setReminders(response.data);  // Assuming reminders are returned as an array
             })

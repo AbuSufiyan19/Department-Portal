@@ -4,6 +4,7 @@ import styles from '../css/index.module.css';
 import folderIcon from '../Assets/Images/subjectfolder.png';
 import plusIcon from '../Assets/Images/plus.png'; // Plus icon for adding folders
 import Resource from './Resource'; // Import your Resource component
+import config from './config';
 
 const Semester1 = () => {
     const [folders, setFolders] = useState([]);  // State to store created folders
@@ -17,7 +18,7 @@ const Semester1 = () => {
     useEffect(() => {
         const fetchFolders = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/folders/show/${semesterNumber}`);
+                const response = await axios.get(`${config.BASE_API_URL}/api/folders/show/${semesterNumber}`);
                 setFolders(response.data);
             } catch (error) {
                 console.error('There was an error fetching the folders!', error);
@@ -39,7 +40,7 @@ const Semester1 = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this folder?");
         if (confirmDelete) {
             try {
-                await axios.delete(`http://localhost:5000/api/folders/deletefolder/${folderId}`); // Delete request to backend
+                await axios.delete(`${config.BASE_API_URL}/api/folders/deletefolder/${folderId}`); // Delete request to backend
                 setFolders(folders.filter(folder => folder._id !== folderId)); // Remove deleted folder from state
             } catch (error) {
                 console.error('There was an error deleting the folder!', error);
@@ -68,7 +69,7 @@ const handleCreateFolder = async () => {
 
     const newFolder = { name: newFolderName, semester: semesterNumber }; // Create folder object with semester
     try {
-        const response = await axios.post('http://localhost:5000/api/folders/createfolder', newFolder);
+        const response = await axios.post(`${config.BASE_API_URL}/api/folders/createfolder`, newFolder);
         setFolders([response.data, ...folders]);  // Append new folder to the list (display in front)
         setIsPopupOpen(false);  // Close the popup
         setNewFolderName('');  // Reset folder name input

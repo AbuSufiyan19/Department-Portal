@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../css/landingpage.module.css'; // Import the CSS file
+import config from './config';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const LandingPage = () => {
         try {
           
           if(userType === 'admin'){
-            const response = await axios.post(`http://localhost:5000/api/admin/checksession`, { userId });
+            const response = await axios.post(`${config.BASE_API_URL}/api/admin/checksession`, { userId });
             if (response.data.valid) {
               navigate('/admin');
             } else {
@@ -23,7 +24,7 @@ const LandingPage = () => {
             }
           }
           else{
-            const response = await axios.post(`http://localhost:5000/api/student/checksession`, { userId });
+            const response = await axios.post(`${config.BASE_API_URL}/api/student/checksession`, { userId });
             if (response.data.valid) {
               navigate('/student');
             } else {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css';
+import config from './config';
 
 const CircularPosting = () => {
     const [title, setTitle] = useState('');
@@ -35,7 +36,7 @@ const CircularPosting = () => {
         formData.append('title', title);
         formData.append('image', image);
 
-        axios.post('http://localhost:5000/api/admin/circulars', formData, {
+        axios.post(`${config.BASE_API_URL}/api/admin/circulars`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

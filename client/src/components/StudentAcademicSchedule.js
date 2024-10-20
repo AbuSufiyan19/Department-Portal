@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
 import pdf from '../Assets/Images/pdf.png';
+import config from './config';
 
 const StudentAcademicSchedule = () => {
     const [schedules, setSchedules] = useState([]);
@@ -9,7 +10,7 @@ const StudentAcademicSchedule = () => {
     const mxyear = localStorage.getItem('year'); // Get mxyear from local storage (e.g., 23)
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/admin/view-academicschedule')
+        axios.get(`${config.BASE_API_URL}/api/admin/view-academicschedule`)
             .then(response => {
                 const filteredSchedules = response.data.filter(schedule => {
                     // Extract last two digits of the schedule year and compare with mxyear

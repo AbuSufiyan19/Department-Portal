@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
+import config from './config';
 
 const GrievancePosting = () => {
     const [title, setTitle] = useState('');
@@ -32,7 +33,7 @@ const GrievancePosting = () => {
             studentId
         };
 
-        axios.post('http://localhost:5000/api/student/postgrievances', grievanceData, {
+        axios.post(`${config.BASE_API_URL}/api/student/postgrievances`, grievanceData, {
             headers: {
                 'Content-Type': 'application/json',
             },

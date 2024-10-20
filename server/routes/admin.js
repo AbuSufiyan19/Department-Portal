@@ -118,7 +118,7 @@
   });
 
   router.delete('/circularsdelete/:id', async (req, res) => {
-    try {
+    try { 
         const circularId = req.params.id;
         // Find the circular to get the image path
         const circular = await Circular.findById(circularId);

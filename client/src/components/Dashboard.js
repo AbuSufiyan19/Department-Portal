@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
+import config from './config';
 
 const Dashboard = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/admin/circulars')
+        axios.get(`${config.BASE_API_URL}/api/admin/circulars`)
             .then(response => {
                 setCards(response.data);
             })
@@ -28,10 +29,10 @@ const Dashboard = () => {
                     cards.map(card => (
                         <div className={styles.card} key={card._id}> {/* Use styles object */}
                             <img 
-                                src={`http://localhost:5000/${card.image}`} 
+                                src={`${config.BASE_API_URL}/${card.image}`} 
                                 alt={card.title} 
                                 className={styles.cardImage} 
-                                onClick={() => openImageInNewTab(`http://localhost:5000/${card.image}`)} // Add onClick event
+                                onClick={() => openImageInNewTab(`${config.BASE_API_URL}/${card.image}`)} // Add onClick event
                                 style={{ cursor: 'pointer' }} // Change cursor to pointer to indicate clickability
                             />
                             <h2>{card.title}</h2>
