@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:3000', // Adjust to match your frontend URL
+  origin: 'https://departmentportal.onrender.com', // Adjust to match your frontend URL
   credentials: true
 }));
 
