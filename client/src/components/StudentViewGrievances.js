@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../css/index.module.css'; // Import the CSS module
+import config from './config';
 
 const ViewGrievances = () => {
     const [grievances, setGrievances] = useState([]);
@@ -13,11 +14,11 @@ const ViewGrievances = () => {
             setStudentId(storedStudentId);
         }
     }, []);
-
+    
     useEffect(() => {
         // Fetch grievances only if studentId is available
         if (studentId) {
-            axios.get(`http://localhost:5000/api/student/viewgrievances`, {
+            axios.get(`${config.BASE_API_URL}/api/student/viewgrievances`, {
                 params: { studentId }, // Send studentId as a query parameter
                 withCredentials: true
             })

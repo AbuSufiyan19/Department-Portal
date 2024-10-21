@@ -162,7 +162,7 @@ async function deletePastReminders() {
 }
 
 // Schedule a daily check at midnight (00:00) to look for reminders for the next day
-cron.schedule('15 14 * * *', async () => {
+cron.schedule('00 09 * * *', async () => {
   await checkAndSendEmails();
   console.log('Running daily reminder check');
   await deletePastReminders();
