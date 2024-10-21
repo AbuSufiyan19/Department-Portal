@@ -114,14 +114,14 @@ const Resource = ({ folder }) => { // Accept folder prop
                                 src={pdfIcon} 
                                 alt="PDF" 
                                 className={styles.cardImage} 
-                                style={{ marginTop: '20px', width: '90px', height: '90px', objectFit: 'cover' }} 
+                                style={{ marginTop: '10px', width: '90px', height: '90px', objectFit: 'cover' }} 
                             />
                             <h2>{resource.name}</h2>
                         </div>
                         {/* Delete button */}
                         <button 
                             onClick={() => handleDelete(resource._id)} 
-                            style={{ backgroundColor: 'white', color: 'red', cursor: 'pointer', padding: '5px', border: '3px solid red', borderRadius: '50px', width:'90px', fontWeight:'bold' }}
+                            style={{ backgroundColor: 'white', color: 'red', paddingTop: '0px', cursor: 'pointer', padding: '5px', border: '3px solid red', borderRadius: '50px', width:'90px', fontWeight:'bold' }}
                             >
                             Delete
                         </button>
