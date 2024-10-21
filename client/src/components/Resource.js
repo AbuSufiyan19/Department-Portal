@@ -98,7 +98,7 @@ const Resource = ({ folder }) => { // Accept folder prop
                         src={plusIcon} 
                         alt="Add File" 
                         className={styles.cardImage} 
-                        style={{ marginTop: '20px', width: '130px', height: '130px', objectFit: 'cover' }} 
+                        style={{ marginTop: '20px', width: '80px', height: '80px', objectFit: 'cover' }} 
                     />
                     <h3 style={{paddingTop: 10}}>Add File</h3>
                 </div>
@@ -114,7 +114,7 @@ const Resource = ({ folder }) => { // Accept folder prop
                                 src={pdfIcon} 
                                 alt="PDF" 
                                 className={styles.cardImage} 
-                                style={{ marginTop: '20px', width: '150px', height: '130px', objectFit: 'cover' }} 
+                                style={{ marginTop: '20px', width: '90px', height: '90px', objectFit: 'cover' }} 
                             />
                             <h2>{resource.name}</h2>
                         </div>
