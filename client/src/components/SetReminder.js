@@ -125,6 +125,7 @@ const SetReminder = () => {
                             <option value="Lab Test 1">Lab Test 1</option>
                             <option value="Lab Test 2">Lab Test 2</option>
                             <option value="Semester Lab Exam">Semester Lab Exam</option>
+                            <option value="Important Announcement">Important Announcement</option>
                         </select>
                         {errors.title && <span className={styles.error}>{errors.title}</span>}
                     </div>

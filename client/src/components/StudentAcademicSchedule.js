@@ -40,14 +40,14 @@ const StudentAcademicSchedule = () => {
                                 <p className={styles.Classgroup}>Class {schedule.group}</p>
                                 <p>{schedule.semester} ({schedule.year.toString().slice(-2)}MX)</p>
                                 <img 
-                                    onClick={() => openPdfInNewTab(`http://localhost:5000/academic_schedules/${schedule.pdfFileName}`)} 
+                                    onClick={() => openPdfInNewTab(`${config.BASE_API_URL}/academic_schedules/${schedule.pdfFileName}`)} 
                                     style={{ height: 130, width: 130}} 
                                     src={pdf} 
                                     alt="PDF"
                                 />
                                 <br />
                                 <a 
-                                    href={`http://localhost:5000/academic_schedules/${schedule.pdfFileName}`} 
+                                    href={`${config.BASE_API_URL}/academic_schedules/${schedule.pdfFileName}`} 
                                     download={schedule.pdfFileName} 
                                     style={{ color: 'blue', cursor: 'pointer', padding: '10px', fontWeight: 'bold', textAlign: 'center', textDecoration: 'none' }}
                                 >

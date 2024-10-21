@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  // origin: 'http://localhost:3000', 
-  origin: 'https://departmentportal.onrender.com', 
+  origin: 'http://localhost:3000', 
+  // origin: 'https://departmentportal.onrender.com', 
   credentials: true
 }));
 
@@ -99,13 +99,23 @@ async function sendReminderEmails(reminder) {
       return;
     }
 
+    // // Compose email
+    // const mailOptions = {
+    //   from: '23mx101@psgtech.ac.in',
+    //   to: students.map(student => student.email), 
+    //   subject: `Reminder: ${reminder.title} for ${reminder.subject}`,
+    //   text: `Dear Students,\n\nThis is a reminder for the upcoming "${reminder.title}" of ${reminder.subject}, scheduled on ${reminder.date.toDateString()} at ${reminder.time}.\n\nPrepare accordingly.\n\nBest Regards,\nDepartment of Computer Application`
+    // };
+
     // Compose email
-    const mailOptions = {
-      from: '23mx101@psgtech.ac.in',
-      to: students.map(student => student.email), 
-      subject: `Reminder: ${reminder.title} for ${reminder.subject}`,
-      text: `Dear Students,\n\nThis is a reminder for the upcoming "${reminder.title}" of ${reminder.subject}, scheduled on ${reminder.date.toDateString()} at ${reminder.time}.\n\nPrepare accordingly.\n\nBest Regards,\nDepartment of Computer Application`
-    };
+const mailOptions = {
+  from: '23mx101@psgtech.ac.in',
+  to: students.map(student => student.email), 
+  subject: `Reminder: ${reminder.title} for ${reminder.subject}`,
+  text: reminder.title === "Important Announcement"
+    ? `Dear Students,\n\nThis is an "${reminder.title}" regarding ${reminder.subject}. Date and Time: ${reminder.date.toDateString()}, ${reminder.time}.\n\nBest Regards,\nDepartment of Computer Application`
+    : `Dear Students,\n\nThis is a reminder for the upcoming "${reminder.title}" of ${reminder.subject}, scheduled on ${reminder.date.toDateString()} at ${reminder.time}.\n\nPrepare accordingly.\n\nBest Regards,\nDepartment of Computer Application`
+};
 
     // Send the email
     await transporter.sendMail(mailOptions);
@@ -152,7 +162,7 @@ async function deletePastReminders() {
 }
 
 // Schedule a daily check at midnight (00:00) to look for reminders for the next day
-cron.schedule('00 10 * * *', async () => {
+cron.schedule('15 14 * * *', async () => {
   await checkAndSendEmails();
   console.log('Running daily reminder check');
   await deletePastReminders();

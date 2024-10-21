@@ -5,7 +5,7 @@ const reminderSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        enum: ['CA 1', 'CA 2', 'Semester 1', 'Semester 2', 'Lab Test 1', 'Lab Test 2', 'Semester Lab Exam']
+        enum: ['CA 1', 'CA 2', 'Semester 1', 'Semester 2', 'Lab Test 1', 'Lab Test 2', 'Semester Lab Exam', 'Important Announcement']
     },
     subject: {
         type: String,
